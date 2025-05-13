@@ -45,7 +45,7 @@ def train_svm_model(
     print(f"✅ Training on {len(X_train)} samples, testing on {len(X_test)} samples.")
 
     print("\n🚂 Training SVM classifier...")
-    model = SVC(kernel='rbf', class_weight='balanced', probability=True)
+    model = SVC(kernel='rbf', C=100, gamma='auto', class_weight='balanced', probability=True)
     model.fit(X_train, y_train)
     print("✅ Training complete.")
 
@@ -81,7 +81,7 @@ if __name__ == "__main__":
     parser.add_argument("--scaler", default="models/scaler.pkl", help="Path to save the scaler")
     parser.add_argument("--label_map", default="models/label_map.json",
                         help="Path to save the label map")
-    parser.add_argument("--test_size", type=float, default=0.3, help="Test set proportion")
+    parser.add_argument("--test_size", type=float, default=0.2, help="Test set proportion")
     parser.add_argument("--random_state", type=int, default=42, help="Random seed")
 
     args = parser.parse_args()
